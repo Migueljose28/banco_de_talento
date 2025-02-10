@@ -8,4 +8,4 @@ class User(db.Model, UserMixin):
 
 
     nome = db.Column(db.String(30), nullable=False)
-    senha = db.column(db.String())
+    senha = db.Column(db.String())
