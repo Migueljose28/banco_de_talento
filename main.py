@@ -59,10 +59,14 @@ def registrar():
     elif request.method == 'POST':
         nome = request.form['nomeForm']
         senha = request.form['senhaForm']
+        email = request.form['emailForm']
+        telefone = request.form['telefoneForm']
+        cpf = request.form['cpfForm']
+
 
 
         #Verificando se o usuário já existe
-        user_existente = User.query.filter_by(nome=nome).first()
+        user_existente = User.query.filter_by(email=email, telefone=telefone, cpf=cpf).first()
         if user_existente:
             mensagem = "Usuário já existente! Escolha outro nome."
             return render_template('registrar.html', mensagem=mensagem) 
@@ -70,7 +74,7 @@ def registrar():
 
 
 
-        user = User(nome=nome, senha=hash_senha(senha))
+        user = User(nome=nome, senha=hash_senha(senha), email=email, telefone=telefone, cpf=cpf)
         db.session.add(user)
         db.session.commit()
   
