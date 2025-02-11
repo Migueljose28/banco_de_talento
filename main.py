@@ -27,8 +27,9 @@ def load_user(id):
 @app.route('/')
 @login_required
 def index():
+    caminho_pdf = 'static/pdf/ebook.pdf'
     print(current_user)
-    return render_template('index.html')
+    return render_template('index.html',caminho_pdf = caminho_pdf)
 
 
 @app.route('/login', methods=['GET', 'POST'])
